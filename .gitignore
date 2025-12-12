@@ -19,6 +19,3 @@ npm-debug.log*
 # Ignore temporary files
 *.tmp
 .cache/
-
-# Ignore personal files
-music.mp3
