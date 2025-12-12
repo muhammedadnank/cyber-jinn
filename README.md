@@ -193,8 +193,6 @@ MIT License - Free to use for personal or commercial projects
 
 **Muhammed Adnan**
 - GitHub: [@muhammedadnank](https://github.com/muhammedadnank)
-- YouTube: [@cyberjinnser](https://www.youtube.com/@cyberjinnser)
-- WhatsApp: +919074133825
 
 ## 🙏 Credits
 
