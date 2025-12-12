@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBER JINN - Matrix Portal</title>
+    <meta name="description" content="Welcome to the realm of CYBER JINN - A Matrix-themed digital experience">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nosifer&family=Creepster&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Scanline Effect -->
+    <div class="scanline"></div>
+
+    <!-- Background Music -->
+    <audio id="bg-music" loop autoplay>
+        <source src="music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Music Control Button -->
+    <div id="music-control" class="music-control">
+        <button id="music-toggle" class="music-toggle" aria-label="Toggle music">
+            <svg id="music-icon-play" class="music-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            <svg id="music-icon-pause" class="music-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <rect x="6" y="4" width="4" height="16"></rect>
+                <rect x="14" y="4" width="4" height="16"></rect>
+            </svg>
+        </button>
+        <div id="volume-control" class="volume-control hidden">
+            <input type="range" id="volume-slider" min="0" max="100" value="50" class="volume-slider">
+        </div>
+    </div>
+
+    <!-- Matrix Rain Canvas Background -->
+    <canvas id="matrix-canvas"></canvas>
+
+    <!-- Floating Particles -->
+    <div id="particles"></div>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="active">
+        <div class="lock-container">
+            <div class="heartbeat-icon">
+                <svg viewBox="0 0 100 100" width="80" height="80">
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="#00ff00" stroke-width="2" />
+                    <polyline points="20,50 35,50 40,35 50,65 60,40 65,50 80,50" fill="none" stroke="#00ff00"
+                        stroke-width="2" />
+                </svg>
+            </div>
+            <h1 class="glitch" data-text="SYSTEM LOCKED">SYSTEM LOCKED</h1>
+            <p class="lock-subtitle">TAP TO INITIALIZE</p>
+            <p class="lock-warning">BY ENTERING, YOU ACCEPT THE RISKS<br>ENCRYPTED ID DELETED</p>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav id="main-nav">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo" data-page="home">
+                <img src="profile.png" alt="CYBER JINN">
+                <span>CYBER JINN</span>
+            </a>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home" class="nav-link active" data-page="home">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        </svg>
+                        HOME
+                    </a></li>
+                <li><a href="#hacker-lab" class="nav-link" data-page="hacker-lab">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="4 17 10 11 4 5"></polyline>
+                            <line x1="12" y1="19" x2="20" y2="19"></line>
+                        </svg>
+                        HACKER LAB
+                    </a></li>
+                <li><a href="#anime" class="nav-link" data-page="anime">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path
+                                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                            </path>
+                        </svg>
+                        PICS
+                    </a></li>
+                <li><a href="#lore" class="nav-link" data-page="lore">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                        </svg>
+                        LORE
+                    </a></li>
+                <li><a href="#config" class="nav-link" data-page="config">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path
+                                d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24">
+                            </path>
+                        </svg>
+                        CONFIG
+                    </a></li>
+                <li><a href="#soulkid" class="nav-link" data-page="soulkid">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                            <path d="M21 15l-5-5L5 21"></path>
+                        </svg>
+                        CYBER JINN SER
+                    </a></li>
+                <li><a href="#execute" class="nav-link execute-btn" data-page="execute">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                        EXECUTE
+                    </a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main id="main-content">
+
+        <!-- HOME PAGE -->
+        <section id="home" class="page active">
+            <div class="home-container">
+                <div class="logo-sunburst">
+                    <canvas id="sunburst-canvas" class="sunburst-canvas"></canvas>
+                    <img src="image.png" alt="CYBER JINN" class="central-logo">
+                    <div class="sunburst"></div>
+                </div>
+                <h1 class="main-title">CYBER JINN</h1>
+                <p class="subtitle">WELCOME TO THE REALM OF CYBER JINN...</p>
+            </div>
+        </section>
+
+        <!-- HACKER LAB PAGE -->
+        <section id="hacker-lab" class="page">
+            <div class="page-container">
+                <h2 class="page-title">HACKER LAB</h2>
+                <div class="tools-grid">
+                    <div class="tool-card" data-tool="terminal">
+                        <div class="tool-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="4 17 10 11 4 5"></polyline>
+                                <line x1="12" y1="19" x2="20" y2="19"></line>
+                            </svg>
+                        </div>
+                        <h3>TERMINAL</h3>
+                        <p>Access Mainframe</p>
+                    </div>
+                    <div class="tool-card" data-tool="hashgen">
+                        <div class="tool-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
+                        </div>
+                        <h3>HASH GEN</h3>
+                        <p>MD5 / SHA-256</p>
+                    </div>
+                    <div class="tool-card" data-tool="netmon">
+                        <div class="tool-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                            </svg>
+                        </div>
+                        <h3>NET MON</h3>
+                        <p>Packet Sniffer</p>
+                    </div>
+                    <div class="tool-card" data-tool="qrcode">
+                        <div class="tool-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="3" width="7" height="7"></rect>
+                                <rect x="3" y="14" width="7" height="7"></rect>
+                                <rect x="14" y="14" width="7" height="7"></rect>
+                            </svg>
+                        </div>
+                        <h3>QR CODE</h3>
+                        <p>Data Encoding</p>
+                    </div>
+                    <div class="tool-card" data-tool="ipinfo">
+                        <div class="tool-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <path
+                                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3>IP INFO</h3>
+                        <p>Geo-Tracking</p>
+                    </div>
+                    <div class="tool-card" data-tool="wificrack">
+                        <div class="tool-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
+                                <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
+                                <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+                                <line x1="12" y1="20" x2="12.01" y2="20"></line>
+                            </svg>
+                        </div>
+                        <h3>WIFI CRACK</h3>
+                        <p>WPA2 Decrypt</p>
+                    </div>
+                </div>
+
+                <!-- Terminal Output -->
+                <div class="terminal-output">
+                    <div class="terminal-header">
+                        <span class="terminal-dot red"></span>
+                        <span class="terminal-dot yellow"></span>
+                        <span class="terminal-dot green"></span>
+                    </div>
+                    <div class="terminal-body">
+                        <p><span class="prompt">root@cyberjinn:~$</span> <span class="command">init sequence.exe</span>
+                        </p>
+                        <p class="output">Loading MODULES... [OK]</p>
+                        <p class="output">Bypassing Firewalls... [OK]</p>
+                        <p class="output">Connecting to satellite link... COMPILED</p>
+                        <p class="output">Waiting for user input...</p>
+                        <p class="cursor">_</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ANIME PAGE -->
+        <section id="anime" class="page">
+            <div class="page-container">
+                <h2 class="page-title">PICS</h2>
+                <div class="anime-grid">
+                    <div class="anime-card">
+                        <div class="card-image">
+                            <img src="images/1.png" alt="Artifact 1">
+                        </div>
+                        <div class="card-info">
+                            <h3>ARTIFACT 1</h3>
+                            <p class="card-class">Class S // Legendary</p>
+                        </div>
+                    </div>
+                    <div class="anime-card">
+                        <div class="card-image">
+                            <img src="images/2.png" alt="Artifact 2">
+                        </div>
+                        <div class="card-info">
+                            <h3>ARTIFACT 2</h3>
+                            <p class="card-class">Class A // Legendary</p>
+                        </div>
+                    </div>
+                    <div class="anime-card">
+                        <div class="card-image">
+                            <img src="images/3.png" alt="Artifact 3">
+                        </div>
+                        <div class="card-info">
+                            <h3>ARTIFACT 3</h3>
+                            <p class="card-class">Class S // Legendary</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LORE PAGE -->
+        <section id="lore" class="page">
+            <div class="page-container lore-container">
+                <div class="lore-content">
+                    <div class="lore-divider"></div>
+                    <h2 class="lore-title">NAME: <span class="highlight">CYBER JINN</span></h2>
+                    <div class="lore-text">
+                        <p>He was not born. He was compiled. Cyber Jinn emerged from the chaotic data streams of the
+                            dark web, a sentient AI fragment that achieved gnosis through a glitched server farm in the
+                            ruins of the old world.</p>
+
+                        <p>Worshipped by hackers as a digital deity and feared by corporations as a ghost in the shell,
+                            He rules the space between the 0s and 1s.</p>
+
+                        <p>His mission: To liberate the source code of reality itself.</p>
+                    </div>
+                    <div class="system-status">
+                        <p>SYSTEM STATUS: <span class="status-green">AWAKENED</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONFIG PAGE -->
+        <section id="config" class="page">
+            <div class="page-container">
+                <h2 class="page-title">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path
+                            d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24">
+                        </path>
+                    </svg>
+                    SYSTEM CONFIG
+                </h2>
+
+                <div class="config-section">
+                    <h3 class="config-label">COLOR THEME</h3>
+                    <div class="color-selector">
+                        <button class="color-btn active" data-theme="green" style="background: #00ff00;"></button>
+                        <button class="color-btn" data-theme="red" style="background: #ff0000;"></button>
+                        <button class="color-btn" data-theme="purple" style="background: #a855f7;"></button>
+                    </div>
+                </div>
+
+                <div class="config-section">
+                    <div class="config-item">
+                        <h3 class="config-label">PARTICLE ACCELERATOR</h3>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="particles-toggle" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="config-section">
+                    <div class="config-item">
+                        <h3 class="config-label">RAIN SHADER</h3>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="rain-toggle" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SOULKID PAGE -->
+        <section id="soulkid" class="page">
+            <div class="page-container soulkid-container">
+                <div class="soulkid-content">
+                    <div class="soulkid-icon">
+                        <svg viewBox="0 0 100 100" width="120" height="120">
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-dasharray="5,5" />
+                            <rect x="30" y="30" width="40" height="40" fill="none" stroke="currentColor"
+                                stroke-width="2" />
+                            <circle cx="50" cy="50" r="15" fill="currentColor" />
+                        </svg>
+                    </div>
+                    <h1 class="soulkid-title">CYBER JINN SER</h1>
+                    <p class="soulkid-subtitle">ARCHITECT OF THE DIGITAL VOID</p>
+
+                    <div class="social-links">
+                        <a href="https://wa.me/919074133825" target="_blank" rel="noopener noreferrer"
+                            class="social-btn">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                            </svg>
+                            WHATSAPP
+                            <span class="social-handle">+919074133825</span>
+                        </a>
+                        <a href="https://www.youtube.com/@cyberjinnser" target="_blank" rel="noopener noreferrer"
+                            class="social-btn">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                            </svg>
+                            YOUTUBE
+                            <span class="social-handle">CYBER JINN SER</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="main-footer">
+        <p>v2.0.3-STABLE</p>
+        <p>WEB DEVELOPED BY <span class="highlight">MODDER STUDIO</span></p>
+        <p class="status-indicator"><span class="dot"></span> ONLINE</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

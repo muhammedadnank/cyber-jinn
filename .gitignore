@@ -1,0 +1,24 @@
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Ignore node modules (if any)
+node_modules/
+
+# Ignore logs
+*.log
+npm-debug.log*
+
+# Ignore temporary files
+*.tmp
+.cache/
+
+# Ignore personal files
+music.mp3
