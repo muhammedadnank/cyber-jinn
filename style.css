@@ -1813,6 +1813,13 @@ input:checked+.toggle-slider::before {
 #main-footer .highlight {
     color: var(--primary-color);
     font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+#main-footer .highlight:hover {
+    text-shadow: 0 0 15px var(--primary-glow);
+    transform: scale(1.05);
 }
 
 @media (max-width: 768px) {
